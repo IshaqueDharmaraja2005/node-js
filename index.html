@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Operations</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Node.js File Operations</h1>
+  <div class="container">
+    <button onclick="performAction('/read')">Read File</button>
+    <button onclick="performAction('/write?content=Hello World')">Write to File</button>
+    <button onclick="performAction('/delete')">Delete File</button>
+    <button onclick="performAction('/rename')">Rename File</button>
+    <button onclick="performAction('/list')">List Files</button>
+  </div>
+  <div id="output"></div>
+
+  <script>
+    function performAction(action) {
+      fetch(action)
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('output').innerText = data;
+        })
+        .catch(error => {
+          document.getElementById('output').innerText = 'Error: ' + error;
+        });
+    }
+  </script>
+</body>
+</html>
